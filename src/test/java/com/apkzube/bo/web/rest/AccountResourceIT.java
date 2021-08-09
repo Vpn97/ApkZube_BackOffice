@@ -14,7 +14,7 @@ import com.apkzube.bo.security.AuthoritiesConstants;
 import com.apkzube.bo.service.UserService;
 import com.apkzube.bo.service.dto.AdminUserDTO;
 import com.apkzube.bo.service.dto.PasswordChangeDTO;
-import com.apkzube.bo.service.dto.UserDTO;
+import com.apkzube.bo.web.rest.controller.AccountResource;
 import com.apkzube.bo.web.rest.vm.KeyAndPasswordVM;
 import com.apkzube.bo.web.rest.vm.ManagedUserVM;
 import java.time.Instant;

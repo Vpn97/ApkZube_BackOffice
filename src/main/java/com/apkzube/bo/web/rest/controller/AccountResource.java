@@ -1,4 +1,4 @@
-package com.apkzube.bo.web.rest;
+package com.apkzube.bo.web.rest.controller;
 
 import com.apkzube.bo.domain.User;
 import com.apkzube.bo.repository.UserRepository;
@@ -7,7 +7,6 @@ import com.apkzube.bo.service.MailService;
 import com.apkzube.bo.service.UserService;
 import com.apkzube.bo.service.dto.AdminUserDTO;
 import com.apkzube.bo.service.dto.PasswordChangeDTO;
-import com.apkzube.bo.service.dto.UserDTO;
 import com.apkzube.bo.web.rest.errors.*;
 import com.apkzube.bo.web.rest.vm.KeyAndPasswordVM;
 import com.apkzube.bo.web.rest.vm.ManagedUserVM;

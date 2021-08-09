@@ -1,4 +1,4 @@
-package com.apkzube.bo.web.rest;
+package com.apkzube.bo.web.rest.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

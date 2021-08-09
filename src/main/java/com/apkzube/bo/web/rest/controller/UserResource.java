@@ -1,4 +1,4 @@
-package com.apkzube.bo.web.rest;
+package com.apkzube.bo.web.rest.controller;
 
 import com.apkzube.bo.config.Constants;
 import com.apkzube.bo.domain.User;

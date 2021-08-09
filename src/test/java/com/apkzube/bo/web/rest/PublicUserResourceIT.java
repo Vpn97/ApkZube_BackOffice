@@ -9,6 +9,7 @@ import com.apkzube.bo.IntegrationTest;
 import com.apkzube.bo.domain.User;
 import com.apkzube.bo.repository.UserRepository;
 import com.apkzube.bo.security.AuthoritiesConstants;
+import com.apkzube.bo.web.rest.controller.UserResource;
 import javax.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

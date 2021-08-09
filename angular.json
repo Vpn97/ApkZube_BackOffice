@@ -109,6 +109,7 @@
   },
   "defaultProject": "apk-zube-back-office",
   "cli": {
+    "analytics": false,
     "packageManager": "npm"
   }
 }

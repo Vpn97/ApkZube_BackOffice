@@ -12,6 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.apkzube.bo.IntegrationTest;
 import com.apkzube.bo.domain.User;
 import com.apkzube.bo.repository.UserRepository;
+import com.apkzube.bo.web.rest.controller.UserJWTController;
 import com.apkzube.bo.web.rest.vm.LoginVM;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
