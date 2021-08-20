@@ -1,0 +1,211 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card card-user">
+      <div class="image">
+        <img src="../../../../content/images/damir-bosnjak.jpg" alt="..." />
+      </div>
+      <div class="card-body">
+        <div class="author">
+          <a href="{{ appMst!.appLink }}" target="_blank">
+            <img class="avatar border-gray" src="{{ appMst!.iconUrl }}" alt="{{ appMst!.appName }}" />
+            <h5 class="title">{{ appMst!.appName }}</h5>
+          </a>
+          <p class="description">@{{ appMst!.developerName }}</p>
+        </div>
+        <p class="text-warning text-center">
+          {{ appMst!.packageName }}
+        </p>
+      </div>
+      <div class="card-footer">
+        <hr />
+        <div class="button-container">
+          <button type="button" (click)="editAppInfo()" class="btn btn-outline-info">Edit</button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Team Members</h4>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled team-members">
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img
+                    src="../../../../content/images/faces/ayo-ogunseinde-2.jpg"
+                    alt="Circle Image"
+                    class="img-circle img-no-padding img-responsive"
+                  />
+                </div>
+              </div>
+              <div class="col-md-7 col-7">
+                DJ Khaled
+                <br />
+                <span class="text-muted">
+                  <small>Offline</small>
+                </span>
+              </div>
+              <div class="col-md-3 col-3 text-right">
+                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img
+                    src="../../../../content/images/faces/joe-gardner-2.jpg"
+                    alt="Circle Image"
+                    class="img-circle img-no-padding img-responsive"
+                  />
+                </div>
+              </div>
+              <div class="col-md-7 col-7">
+                Creative Tim
+                <br />
+                <span class="text-success">
+                  <small>Available</small>
+                </span>
+              </div>
+              <div class="col-md-3 col-3 text-right">
+                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  <img
+                    src="../../../../content/images/faces/clem-onojeghuo-2.jpg"
+                    alt="Circle Image"
+                    class="img-circle img-no-padding img-responsive"
+                  />
+                </div>
+              </div>
+              <div class="col-ms-7 col-7">
+                Flume
+                <br />
+                <span class="text-danger">
+                  <small>Busy</small>
+                </span>
+              </div>
+              <div class="col-md-3 col-3 text-right">
+                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6" (click)="editCategory()">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
+                  <i class="nc-icon nc-globe text-warning"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Category</p>
+                  <p class="card-title">{{ appMstInfoDTO.totalCategory }}</p>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats"><i class="fa fa-refresh"></i> Update Now</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
+                  <i class="nc-icon nc-money-coins text-success"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Tutorial</p>
+                  <p class="card-title">{{ appMstInfoDTO.totalTutorial }}</p>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats"><i class="fa fa-calendar-o"></i> Last day</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
+                  <i class="nc-icon nc-vector text-danger"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Examples</p>
+                  <p class="card-title">{{ appMstInfoDTO.totalExample }}</p>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats"><i class="fa fa-clock-o"></i> In the last hour</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
+                  <i class="nc-icon nc-favourite-28 text-primary"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Materials</p>
+                  <p class="card-title">{{ appMstInfoDTO.totalMaterial }}</p>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr />
+            <div class="stats"><i class="fa fa-refresh"></i> Update now</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
