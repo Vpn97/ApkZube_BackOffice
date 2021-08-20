@@ -1,4 +1,4 @@
-package com.apkzube.bo.service;
+package com.apkzube.bo.service.errors;
 
 public class InvalidPasswordException extends RuntimeException {
 

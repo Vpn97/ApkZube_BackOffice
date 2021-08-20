@@ -69,6 +69,10 @@ export class AccountService {
     return this.http.get<Account>(this.applicationConfigService.getEndpointFor('api/account'));
   }
 
+  private fetchById(userId: number): Observable<Account> {
+    return this.http.get<Account>(this.applicationConfigService.getEndpointFor('api/account'), { params: { userId } });
+  }
+
   private navigateToStoredUrl(): void {
     // previousState can be set in the authExpiredInterceptor and in the userRouteAccessService
     // if login is successful, go to stored previousState and clear previousState

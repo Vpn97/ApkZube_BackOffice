@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/en';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import * as dayjs from 'dayjs';
 import { NgbDateAdapter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -25,14 +25,23 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ErrorComponent } from './layouts/error/error.component';
-import { DashboardModule } from './components/dashboard/dashboard.module';
+import { FixedPluginModule } from './shared/fixedplugin/fixedplugin.module';
+import { AppMstModule } from './components/app-mst/app-mst.module';
+import { TutCategoryModule } from './components/tutorial-category/tutorial-category.module';
+import { AppMaterialListComponent } from './components/app-material/app-material-list/app-material-list.component';
+import { EditMaterialComponent } from './components/app-material/edit-material/edit-material.component';
+import { AddMaterialComponent } from './components/app-material/add-material/add-material.component';
+import { ViewMaterialComponent } from './components/app-material/view-material/view-material.component';
+import { AppMaterialModule } from './components/app-material/app-material.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     SharedModule,
     HomeModule,
-    DashboardModule,
+    AppMstModule,
+    TutCategoryModule,
+    AppMaterialModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     EntityRoutingModule,
     AppRoutingModule,
@@ -40,6 +49,8 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
     HttpClientModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
+    FixedPluginModule,
+    FontAwesomeModule,
   ],
   providers: [
     Title,
@@ -47,7 +58,17 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    FooterComponent,
+    AppMaterialListComponent,
+    EditMaterialComponent,
+    AddMaterialComponent,
+    ViewMaterialComponent,
+  ],
   bootstrap: [MainComponent],
 })
 export class AppModule {

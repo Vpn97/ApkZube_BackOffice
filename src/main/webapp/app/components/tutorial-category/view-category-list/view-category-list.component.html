@@ -1,0 +1,100 @@
+<div>
+  <h2 style="text-align: center">
+    <span>Tutorial Cetegory of {{ appMst!.appName }}</span>
+    <br />
+    <br />
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh</span>
+      </button>
+      <button class="btn btn-primary jh-create-entity" (click)="addCategory()">
+        <fa-icon icon="plus"></fa-icon> <span>New Cetegory</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col"><span>Id</span></th>
+                  <th scope="col"><span>Name</span></th>
+                  <th scope="col"><span>Type</span></th>
+                  <th scope="col">Active</th>
+                  <th scope="col"><span>Description</span></th>
+                  <th scope="col"><span>Created Date</span></th>
+                  <th scope="col"><span>Last Modified Date</span></th>
+                  <th scope="col">View/Edit</th>
+                </tr>
+              </thead>
+              <ng-container *ngIf="catList!.length > 0">
+                <tbody>
+                  <tr *ngFor="let cat of catList">
+                    <td>
+                      <a [routerLink]="['./', cat.tutCatMstId, 'view']">{{ cat.tutCatMstId }}</a>
+                    </td>
+                    <td>{{ cat.categoryName }}</td>
+                    <td>{{ cat.catType }}</td>
+                    <td>
+                      <button class="btn btn-danger btn-sm" *ngIf="!cat.active">Deactivated</button>
+                      <button class="btn btn-success btn-sm" *ngIf="cat.active">Activated</button>
+                    </td>
+                    <td>{{ cat.categoryDesc }}</td>
+                    <td>{{ cat.createdDate | date: 'dd/MM/yy HH:mm' }}</td>
+                    <td>{{ cat.updatedDate | date: 'dd/MM/yy HH:mm' }}</td>
+                    <td class="text-right">
+                      <div class="btn-group">
+                        <button type="submit" [routerLink]="['../../', 'view-category', cat.tutCatMstId]" class="btn btn-info btn-sm">
+                          <fa-icon icon="eye"></fa-icon>
+                          <span class="d-none d-md-inline">View</span>
+                        </button>
+
+                        <button
+                          type="submit"
+                          [routerLink]="['../../', 'edit-category', cat.tutCatMstId]"
+                          queryParamsHandling="merge"
+                          class="btn btn-warning btn-sm"
+                        >
+                          <fa-icon icon="pencil-alt"></fa-icon>
+                          <span class="d-none d-md-inline">Edit</span>
+                        </button>
+
+                        <!-- <button
+                    type="button"
+                    (click)="deleteUser(user)"
+                    class="btn btn-danger btn-sm"
+                    [disabled]="!currentAccount || currentAccount.login === user.login"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Delete</span>
+                  </button> -->
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </ng-container>
+            </table>
+
+            <ng-container *ngIf="catList!.length == 0">
+              <div class="alert alert-warning alert-dismissible fade show" style="text-align: center">
+                <a
+                  ><h3>Categories not added for {{ appMst!.appName }}</h3></a
+                >
+                <button class="btn btn-danger" (click)="addCategory()"><fa-icon icon="plus"></fa-icon> <span>New Cetegory</span></button>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

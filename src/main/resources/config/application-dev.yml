@@ -133,4 +133,7 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+  asset:
+    iconDirPath: F:\bo\asset\icon\
+    imageDirPath: F:\bo\asset\image\

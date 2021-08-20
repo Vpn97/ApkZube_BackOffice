@@ -23,7 +23,7 @@ export class AppMst implements IAppMst {
     public appLink?: string,
     public iconUrl?: string,
     public developerName?: null,
-    publicprivacyPolicyUrl?: string,
+    public privacyPolicyUrl?: string,
     public created_date?: Date
   ) {}
 }

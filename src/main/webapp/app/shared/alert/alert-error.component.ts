@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { AlertError } from './alert-error.model';
 import { Alert, AlertService } from 'app/core/util/alert.service';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
+import { ErrorDTO } from 'app/services/model/error-dto.model';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'jhi-alert-error',
@@ -50,10 +52,27 @@ export class AlertErrorComponent implements OnDestroy {
               const fieldName: string = convertedField.charAt(0).toUpperCase() + convertedField.slice(1);
               this.addErrorAlert(`Error on field "${fieldName}"`);
             }
+          } else if (
+            httpErrorResponse.error !== '' &&
+            httpErrorResponse.error.message &&
+            httpErrorResponse.error.message === 'error.validation'
+          ) {
+            httpErrorResponse.error.violations.forEach((err: { field: string; message: string }) => {
+              // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+              this.addErrorAlert(err.field + ' :: ' + err.message);
+            });
           } else if (httpErrorResponse.error !== '' && httpErrorResponse.error.message) {
             this.addErrorAlert(httpErrorResponse.error.detail ?? httpErrorResponse.error.message);
           } else {
-            this.addErrorAlert(httpErrorResponse.error);
+            // this.addErrorAlert(httpErrorResponse.error);
+            const errors = httpErrorResponse.error as ErrorDTO[];
+            if (errors.length > 0) {
+              errors.forEach(err => {
+                this.addErrorAlert(err.message);
+              });
+            } else {
+              this.addErrorAlert(httpErrorResponse.error);
+            }
           }
           break;
         }
@@ -61,6 +80,17 @@ export class AlertErrorComponent implements OnDestroy {
         case 404:
           this.addErrorAlert('Not found');
           break;
+
+        case 403: {
+          const errors = httpErrorResponse.error as ErrorDTO[];
+          if (errors.length > 0) {
+            errors.forEach(err => {
+              this.addErrorAlert(err.message);
+            });
+          }
+
+          break;
+        }
 
         default:
           if (httpErrorResponse.error !== '' && httpErrorResponse.error.message) {

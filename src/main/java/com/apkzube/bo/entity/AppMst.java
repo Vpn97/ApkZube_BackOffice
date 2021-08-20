@@ -33,7 +33,7 @@ public class AppMst {
     @Column(name = "icon_url")
     private String iconUrl;
 
-    @Column(name = "devloper_name")
+    @Column(name = "developer_name")
     private String developerName;
 
     @Column(name = "privacy_policy_url")

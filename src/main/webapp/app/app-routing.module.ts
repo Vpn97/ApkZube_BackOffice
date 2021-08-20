@@ -32,12 +32,36 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
         },
 
         {
-          path: 'dashboard',
+          path: '',
+          redirectTo: 'login',
+          pathMatch: 'full',
+        },
+
+        {
+          path: 'app-mst',
           data: {
             authorities: [Authority.ADMIN],
           },
           canActivate: [UserRouteAccessService],
-          loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule),
+          loadChildren: () => import('./components/app-mst/app-mst.module').then(m => m.AppMstModule),
+        },
+
+        {
+          path: 'tut-cat',
+          data: {
+            authorities: [Authority.ADMIN],
+          },
+          canActivate: [UserRouteAccessService],
+          loadChildren: () => import('./components/tutorial-category/tutorial-category.module').then(m => m.TutCategoryModule),
+        },
+
+        {
+          path: 'material',
+          data: {
+            authorities: [Authority.ADMIN],
+          },
+          canActivate: [UserRouteAccessService],
+          loadChildren: () => import('./components/app-material/app-material.module').then(m => m.AppMaterialModule),
         },
 
         ...LAYOUT_ROUTES,

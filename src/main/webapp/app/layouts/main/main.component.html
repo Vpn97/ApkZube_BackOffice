@@ -1,4 +1,4 @@
-<jhi-page-ribbon></jhi-page-ribbon>
+<!-- <jhi-page-ribbon></jhi-page-ribbon>
 
 <div>
   <router-outlet name="navbar"></router-outlet>
@@ -10,4 +10,18 @@
   </div>
 
   <jhi-footer></jhi-footer>
+</div> -->
+
+<div class="wrapper">
+  <div class="sidebar" data-color="white" data-active-color="danger">
+    <sidebar-cmp></sidebar-cmp>
+  </div>
+  <div class="main-panel">
+    <navbar-cmp></navbar-cmp>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+    <footer-cmp></footer-cmp>
+  </div>
 </div>
+<!-- <fixedplugin-cmp></fixedplugin-cmp> -->

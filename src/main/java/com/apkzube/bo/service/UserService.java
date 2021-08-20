@@ -9,6 +9,10 @@ import com.apkzube.bo.security.AuthoritiesConstants;
 import com.apkzube.bo.security.SecurityUtils;
 import com.apkzube.bo.service.dto.AdminUserDTO;
 import com.apkzube.bo.service.dto.UserDTO;
+import com.apkzube.bo.service.errors.EmailAlreadyUsedException;
+import com.apkzube.bo.service.errors.InvalidPasswordException;
+import com.apkzube.bo.service.errors.UsernameAlreadyUsedException;
+import com.apkzube.bo.web.rest.controller.AccountResource;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -18,7 +22,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -341,5 +347,22 @@ public class UserService {
         if (user.getEmail() != null) {
             Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE)).evict(user.getEmail());
         }
+    }
+
+    public AdminUserDTO fetchById(String userId) {
+        return getUserWithAuthorities(userId).map(AdminUserDTO::new).orElseThrow();
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<User> getUserWithAuthorities(String userId) {
+        return userRepository.findOneByLogin(userId);
+    }
+
+    public Long getCurrentUserId() {
+        Optional<User> user = SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByLogin);
+        if (user.isPresent()) {
+            return user.get().getId();
+        }
+        return 0L;
     }
 }
