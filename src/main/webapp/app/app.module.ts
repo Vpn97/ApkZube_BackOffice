@@ -28,10 +28,6 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { FixedPluginModule } from './shared/fixedplugin/fixedplugin.module';
 import { AppMstModule } from './components/app-mst/app-mst.module';
 import { TutCategoryModule } from './components/tutorial-category/tutorial-category.module';
-import { AppMaterialListComponent } from './components/app-material/app-material-list/app-material-list.component';
-import { EditMaterialComponent } from './components/app-material/edit-material/edit-material.component';
-import { AddMaterialComponent } from './components/app-material/add-material/add-material.component';
-import { ViewMaterialComponent } from './components/app-material/view-material/view-material.component';
 import { AppMaterialModule } from './components/app-material/app-material.module';
 
 @NgModule({
@@ -58,17 +54,7 @@ import { AppMaterialModule } from './components/app-material/app-material.module
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [
-    MainComponent,
-    NavbarComponent,
-    ErrorComponent,
-    PageRibbonComponent,
-    FooterComponent,
-    AppMaterialListComponent,
-    EditMaterialComponent,
-    AddMaterialComponent,
-    ViewMaterialComponent,
-  ],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   bootstrap: [MainComponent],
 })
 export class AppModule {
