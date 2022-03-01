@@ -48,7 +48,7 @@ node {
     }
 
     stage('packaging') {
-        sh "./mvnwc clean install -Pdev -DskipTests"
+        sh "./mvnw clean install -Pdev -DskipTests"
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
     }
 
