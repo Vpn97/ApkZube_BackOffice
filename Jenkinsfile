@@ -2,9 +2,8 @@
 
 node {
 
-    tools {
-            jdk "jdk-12.0.2"
-    }
+    env.JAVA_HOME="${tool 'jdk-12.0.2'}"
+
     stage('checkout') {
         checkout scm
     }
