@@ -14,7 +14,7 @@ node {
 
     stage('clean') {
         sh "chmod +x mvnw"
-        sh "./mvnw -ntp clean -P-webapp"
+        sh "./mvnw -ntp clean -P-webapp -DskipTests"
     }
     stage('nohttp') {
         sh "./mvnw -ntp checkstyle:check"
@@ -29,7 +29,7 @@ node {
     }
     stage('backend tests') {
         try {
-            sh "./mvnw -ntp verify -P-webapp"
+            sh "./mvnw -ntp verify -P-webapp -DskipTests"
         } catch(err) {
             throw err
         } finally {
