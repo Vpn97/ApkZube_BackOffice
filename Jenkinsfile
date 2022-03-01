@@ -29,11 +29,11 @@ node {
     }
     stage('backend tests') {
         try {
-            sh "./mvnw -ntp verify -P-webapp -DskipTests"
+            sh "./mvnw -ntp verify -P-webapp"
         } catch(err) {
             throw err
         } finally {
-            junit '**/target/surefire-reports/TEST-*.xml,**/target/failsafe-reports/TEST-*.xml'
+            //junit '**/target/surefire-reports/TEST-*.xml,**/target/failsafe-reports/TEST-*.xml'
         }
     }
 
@@ -43,14 +43,13 @@ node {
         } catch(err) {
             throw err
         } finally {
-            junit '**/target/test-results/TESTS-results-jest.xml'
+            //junit '**/target/test-results/TESTS-results-jest.xml'
         }
     }
 
     stage('packaging') {
         sh "./mvnw -ntp verify -P-webapp deploy -Pdev -DskipTests"
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-        junit allowEmptyResults: true, testResults: '**/test-results/*.xml'
     }
 
     stage('deploy') {
