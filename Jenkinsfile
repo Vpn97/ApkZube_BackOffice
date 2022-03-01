@@ -51,4 +51,11 @@ node {
         sh "./mvnw -ntp verify -P-webapp deploy -Pdev -DskipTests"
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
     }
+
+    stage('deploy') {
+        sh "java -jar **/target/*.jar"
+    }
+
+
+
 }
