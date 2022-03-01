@@ -3,6 +3,8 @@
 node {
 
     env.JAVA_HOME="${tool 'jdk-12.0.2'}"
+    env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+
 
     stage('checkout') {
         checkout scm
