@@ -1,4 +1,4 @@
-package com.apkzube.bo.web.rest.response;
+package com.apkzube.bo.service.dto;
 
 import java.util.List;
 

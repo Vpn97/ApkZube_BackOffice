@@ -7,12 +7,11 @@ import com.apkzube.bo.repository.TutorialCategoryTypeRepository;
 import com.apkzube.bo.service.AppMstService;
 import com.apkzube.bo.service.TutCategoryService;
 import com.apkzube.bo.service.UserService;
-import com.apkzube.bo.web.rest.response.ErrorDTO;
-import com.apkzube.bo.web.rest.response.TutCategoryMstDTO;
-import com.apkzube.bo.web.rest.vm.TutorialCategoryFormVM;
+import com.apkzube.bo.service.dto.ErrorDTO;
+import com.apkzube.bo.service.dto.TutCategoryDTO;
+import com.apkzube.bo.service.dto.TutorialCategoryFormDTO;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -55,9 +54,9 @@ public class CategoryController {
     }
 
     @GetMapping("/getTutCategoryById")
-    public ResponseEntity<TutCategoryMstDTO> getTutCategoryById(@RequestParam(value = "catId") String catId) {
+    public ResponseEntity<TutCategoryDTO> getTutCategoryById(@RequestParam(value = "catId") String catId) {
         try {
-            TutCategoryMstDTO categoryMst = tutCategoryService.getTutCategoryById(Long.parseLong(catId));
+            TutCategoryDTO categoryMst = tutCategoryService.getTutCategoryById(Long.parseLong(catId));
             return ResponseEntity.ok(categoryMst);
         } catch (Exception e) {
             log.error("AppMstController : getTutCategoryById : " + e.getMessage(), e);
@@ -76,7 +75,7 @@ public class CategoryController {
     }
 
     @PostMapping(value = "/createTutorialCategory", consumes = "multipart/form-data")
-    public ResponseEntity<?> createTutorialCategory(@Valid @ModelAttribute TutorialCategoryFormVM formVM) {
+    public ResponseEntity<?> createTutorialCategory(@Valid @ModelAttribute TutorialCategoryFormDTO formVM) {
         List<ErrorDTO> errorDTOS = new ArrayList<>();
         try {
             errorDTOS = tutCategoryService.createTutorialCategory(formVM);
@@ -93,7 +92,7 @@ public class CategoryController {
     }
 
     @PostMapping(value = "/updateTutorialCategory", consumes = "multipart/form-data")
-    public ResponseEntity<?> updateTutorialCategory(@Valid @ModelAttribute TutorialCategoryFormVM formVM) {
+    public ResponseEntity<?> updateTutorialCategory(@Valid @ModelAttribute TutorialCategoryFormDTO formVM) {
         List<ErrorDTO> errorDTOS = new ArrayList<>();
         try {
             errorDTOS = tutCategoryService.updateTutorialCategory(formVM);

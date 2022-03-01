@@ -10,10 +10,10 @@ public class TutorialDtl {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "tutorial_dtl_id ", nullable = false)
+    @Column(name = "tutorial_dtl_id", nullable = false)
     private Long tutDtlId;
 
-    @Column(name = "tut_mst_id ")
+    @Column(name = "tut_mst_id")
     private Long tutMstId;
 
     @Column(name = "title")

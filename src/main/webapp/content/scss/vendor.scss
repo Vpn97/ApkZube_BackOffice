@@ -73,3 +73,12 @@ eg $input-color: red;
 @import 'paper-dashboard/angular/fixed-plugin';
 
 @import 'paper-dashboard/responsive';
+
+@import '~ag-grid-community/dist/styles/ag-grid.css';
+@import '~ag-grid-community/dist/styles/ag-theme-alpine.css';
+@import '~ag-grid-community/dist/styles/ag-theme-material.css';
+
+@import '~codemirror/lib/codemirror.css';
+@import '~codemirror/theme/material.css';
+@import '~codemirror/theme/night.css';
+@import '~codemirror/theme/monokai.css';

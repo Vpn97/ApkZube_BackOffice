@@ -1,0 +1,106 @@
+<div>
+  <h2 style="text-align: center">
+    <span>Examples of {{ catDTO!.catName }}</span>
+    <br />
+    <br />
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh</span>
+      </button>
+      <button
+        class="btn btn-primary jh-create-entity"
+        [routerLink]="['../../../', 'add-example', catDTO!.programCatId, appMst!.appId, null]"
+        [queryParams]="{ appId: appMst!.appId, catId: catDTO!.programCatId, programId: null }"
+      >
+        <fa-icon icon="plus"></fa-icon> <span>Add Example</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col"><span>Id</span></th>
+                  <th scope="col"><span>Title</span></th>
+                  <th scope="col"><span>From</span></th>
+                  <th scope="col"><span>Created By</span></th>
+                  <th scope="col"><span>Created Date</span></th>
+                  <th scope="col"><span>Modified By</span></th>
+                  <th scope="col"><span>Modified Date</span></th>
+                  <th scope="col">View/Edit</th>
+                </tr>
+              </thead>
+              <ng-container *ngIf="programList!.length > 0">
+                <tbody>
+                  <tr *ngFor="let mst of programList">
+                    <td>
+                      <a [routerLink]="['../../../', 'view-example', mst.programId]">{{ mst.programId }}</a>
+                    </td>
+
+                    <td>
+                      <p style="white-space: pre-wrap">{{ mst.title }}</p>
+                    </td>
+                    <td>{{ mst.programBy }}</td>
+                    <td>{{ mst.createdBy }}</td>
+                    <td style="text-align: center">{{ mst.createdDate | date: 'dd/MM/yy HH:mm' }}</td>
+
+                    <td *ngIf="mst.updatedBy">{{ mst.updatedBy }}</td>
+                    <td *ngIf="!mst.updatedBy" style="text-align: center">{{ 'NA' }}</td>
+                    <td style="text-align: center">{{ mst.updatedDate | date: 'dd/MM/yy HH:mm' }}</td>
+
+                    <td class="text-right">
+                      <div class="btn-group">
+                        <button
+                          type="submit"
+                          [routerLink]="['../../../', 'view-example', mst.programId, catDTO!.programCatId, appMst!.appId]"
+                          class="btn btn-info btn-sm"
+                        >
+                          <fa-icon icon="eye"></fa-icon>
+                          <span class="d-none d-md-inline">View</span>
+                        </button>
+
+                        <button
+                          type="submit"
+                          [routerLink]="['../../../', 'add-example', catDTO!.programCatId, appMst!.appId, mst.programId]"
+                          [queryParams]="{ appId: appMst!.appId, catId: catDTO!.programCatId, programId: mst.programId }"
+                          queryParamsHandling="merge"
+                          class="btn btn-warning btn-sm"
+                        >
+                          <fa-icon icon="pencil-alt"></fa-icon>
+                          <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </ng-container>
+            </table>
+
+            <ng-container *ngIf="programList!.length == 0">
+              <div class="alert alert-warning alert-dismissible fade show" style="text-align: center">
+                <a><h3>Examples not added</h3></a>
+                <button
+                  class="btn btn-danger"
+                  [routerLink]="['../../../', 'add-example', catDTO!.programCatId, appMst!.appId, null]"
+                  [queryParams]="{ appId: appMst!.appId, catId: catDTO!.programCatId, programId: null }"
+                >
+                  <fa-icon icon="plus"></fa-icon> <span>Add Example</span>
+                </button>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

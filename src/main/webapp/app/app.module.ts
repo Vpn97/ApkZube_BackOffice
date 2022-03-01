@@ -29,15 +29,20 @@ import { FixedPluginModule } from './shared/fixedplugin/fixedplugin.module';
 import { AppMstModule } from './components/app-mst/app-mst.module';
 import { TutCategoryModule } from './components/tutorial-category/tutorial-category.module';
 import { AppMaterialModule } from './components/app-material/app-material.module';
+import { CodeExamplesModule } from './components/code-example/code-examples.module';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   imports: [
     BrowserModule,
+    NgxEditorModule,
     SharedModule,
     HomeModule,
     AppMstModule,
     TutCategoryModule,
     AppMaterialModule,
+    CodeExamplesModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     EntityRoutingModule,
     AppRoutingModule,
@@ -47,6 +52,7 @@ import { AppMaterialModule } from './components/app-material/app-material.module
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
     FixedPluginModule,
     FontAwesomeModule,
+    MonacoEditorModule.forRoot(),
   ],
   providers: [
     Title,

@@ -34,7 +34,6 @@ export class ViewCategoryListComponent implements OnInit {
   loadAll(): void {
     this.isLoading = true;
     this.categoryService.getAllTutCategoryByAppId(this.appId!).subscribe(data => {
-      //this.catList=[];
       this.catList = data as unknown as TutorialCategoryMst[];
 
       this.isLoading = false;

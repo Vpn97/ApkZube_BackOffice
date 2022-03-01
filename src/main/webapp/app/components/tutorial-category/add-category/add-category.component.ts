@@ -4,7 +4,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppMst } from 'app/services/model/app-mst.model';
 import { ErrorDTO } from 'app/services/model/error-dto.model';
-import { TutorialCategoryMst } from 'app/services/model/tutorial-cat-mst.model';
 import { TutorialCategoryType } from 'app/services/model/tutorial-category-type.model';
 import { AppMstService } from 'app/services/rest/app-mst.service';
 import { CategoryService } from 'app/services/rest/category.service';

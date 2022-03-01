@@ -1,10 +1,10 @@
-package com.apkzube.bo.web.rest.response;
+package com.apkzube.bo.service.dto;
 
 import com.apkzube.bo.entity.AppMst;
 
 public class AppMstInfoDTO {
 
-    private AppMst appMst;
+    private AppMstDTO appMstDTO;
 
     private int totalCategory;
 
@@ -30,12 +30,12 @@ public class AppMstInfoDTO {
         this.totalProgramCategory = totalProgramCategory;
     }
 
-    public AppMst getAppMst() {
-        return appMst;
+    public AppMstDTO getAppMstDTO() {
+        return appMstDTO;
     }
 
-    public void setAppMst(AppMst appMst) {
-        this.appMst = appMst;
+    public void setAppMstDTO(AppMstDTO appMstDTO) {
+        this.appMstDTO = appMstDTO;
     }
 
     public int getTotalCategory() {

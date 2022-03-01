@@ -1,4 +1,4 @@
-package com.apkzube.bo.util;
+package com.apkzube.bo.service.constant;
 
 public class AppConstant {
 

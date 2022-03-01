@@ -1,4 +1,5 @@
 import { AppMst } from './app-mst.model';
+import { TutorialMstDTO } from './tutorial-mst-dto.model';
 
 export interface ITutorialCategoryMstDTO {
   tutCatMstId?: number;
@@ -16,6 +17,7 @@ export interface ITutorialCategoryMstDTO {
   createdUserName?: string;
   updatedUserName?: string;
   appMst?: AppMst;
+  tutorialMstDTOS?: TutorialMstDTO[];
 }
 
 export class TutorialCategoryMstDTO implements ITutorialCategoryMstDTO {
@@ -34,6 +36,7 @@ export class TutorialCategoryMstDTO implements ITutorialCategoryMstDTO {
     public active: boolean,
     public createdUserName: string,
     public updatedUserName: string,
-    public appMst: AppMst
+    public appMst: AppMst,
+    public tutorialMstDTOS: TutorialMstDTO[]
   ) {}
 }

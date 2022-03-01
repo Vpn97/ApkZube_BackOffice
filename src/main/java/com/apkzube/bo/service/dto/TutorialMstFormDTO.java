@@ -1,32 +1,28 @@
-package com.apkzube.bo.web.rest.vm;
+package com.apkzube.bo.service.dto;
 
 import java.util.Date;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
 
-public class TutorialCategoryFormVM {
+public class TutorialMstFormDTO {
 
+    private Long tutMstId;
+
+    @NotNull
     private Long tutCatMstId;
 
-    @NotNull
-    private Long appId;
+    @NotBlank(message = "title should not be empty")
+    private String title;
 
-    @NotNull
-    @Size(min = 6, max = 50)
-    private String categoryName;
+    @NotEmpty(message = "description should not be empty")
+    private String description;
 
-    @Size(min = 10, max = 200)
-    private String categoryDesc;
-
-    @NotNull
-    private String catType;
-
-    private String iconURL;
+    private MultipartFile imgFile;
 
     private String imgURL;
 
-    @NotNull
     private boolean isActive;
 
     private Long createdBy;
@@ -37,11 +33,13 @@ public class TutorialCategoryFormVM {
 
     private Date updatedDate;
 
-    private MultipartFile imgFile;
+    public Long getTutMstId() {
+        return tutMstId;
+    }
 
-    private MultipartFile iconFile;
-
-    public TutorialCategoryFormVM() {}
+    public void setTutMstId(Long tutMstId) {
+        this.tutMstId = tutMstId;
+    }
 
     public Long getTutCatMstId() {
         return tutCatMstId;
@@ -51,44 +49,20 @@ public class TutorialCategoryFormVM {
         this.tutCatMstId = tutCatMstId;
     }
 
-    public Long getAppId() {
-        return appId;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAppId(Long appId) {
-        this.appId = appId;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public String getCategoryDesc() {
-        return categoryDesc;
-    }
-
-    public void setCategoryDesc(String categoryDesc) {
-        this.categoryDesc = categoryDesc;
-    }
-
-    public String getCatType() {
-        return catType;
-    }
-
-    public void setCatType(String catType) {
-        this.catType = catType;
-    }
-
-    public String getIconURL() {
-        return iconURL;
-    }
-
-    public void setIconURL(String iconURL) {
-        this.iconURL = iconURL;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImgURL() {
@@ -145,13 +119,5 @@ public class TutorialCategoryFormVM {
 
     public void setImgFile(MultipartFile imgFile) {
         this.imgFile = imgFile;
-    }
-
-    public MultipartFile getIconFile() {
-        return iconFile;
-    }
-
-    public void setIconFile(MultipartFile iconFile) {
-        this.iconFile = iconFile;
     }
 }

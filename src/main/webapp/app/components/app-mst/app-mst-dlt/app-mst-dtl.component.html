@@ -111,7 +111,7 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-globe text-warning"></i>
+                  <fa-icon icon="database" [styles]="{ color: 'red' }"></fa-icon>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -125,18 +125,18 @@
           </div>
           <div class="card-footer">
             <hr />
-            <div class="stats"><i class="fa fa-refresh"></i> Update Now</div>
+            <div class="stats"><i class="fa fa-refresh"></i> Category of Tutorials</div>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="col-lg-6 col-md-6 col-sm-6" (click)="openTutorial()">
         <div class="card card-stats">
           <div class="card-body">
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-money-coins text-success"></i>
+                  <fa-icon icon="graduation-cap" [styles]="{ color: 'blue' }"></fa-icon>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -150,20 +150,20 @@
           </div>
           <div class="card-footer">
             <hr />
-            <div class="stats"><i class="fa fa-calendar-o"></i> Last day</div>
+            <div class="stats"><i class="fa fa-calendar-o"></i> Maintian Tutorials</div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="col-lg-6 col-md-6 col-sm-6" (click)="openExampleCategory()">
         <div class="card card-stats">
           <div class="card-body">
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-vector text-danger"></i>
+                  <fa-icon icon="code" [styles]="{ color: 'orange' }"></fa-icon>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -182,13 +182,13 @@
         </div>
       </div>
 
-      <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="col-lg-6 col-md-6 col-sm-6" (click)="openMaterial()">
         <div class="card card-stats">
           <div class="card-body">
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-favourite-28 text-primary"></i>
+                  <fa-icon icon="book" [styles]="{ color: 'green' }"></fa-icon>
                 </div>
               </div>
               <div class="col-7 col-md-8">

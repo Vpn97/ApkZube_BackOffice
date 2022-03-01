@@ -40,7 +40,7 @@ public class PracticeProgramMst {
     @Column(name = "program_url")
     private String programURL;
 
-    @Column(name = "program_icon")
+    @Column(name = "program_icon", nullable = true)
     private String programIconURL;
 
     @Column(name = "created_by", length = 8)

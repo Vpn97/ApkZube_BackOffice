@@ -2,8 +2,9 @@ package com.apkzube.bo.service;
 
 import com.apkzube.bo.config.ApplicationProperties;
 import com.apkzube.bo.config.Constants;
-import com.apkzube.bo.util.AppConstant;
-import com.apkzube.bo.web.rest.response.ErrorDTO;
+import com.apkzube.bo.service.dto.ErrorDTO;
+import com.apkzube.bo.util.CommonUtil;
+import com.apkzube.bo.util.StringUtil;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -68,6 +69,26 @@ public class FileSystemService {
         return getBaseExternalURL() + Constants.ICON_URL_PREFIX_API + name;
     }
 
+    public String getIconUrlWithUrlCheck(String iconURL) {
+        if (!StringUtil.isNullEmpty(iconURL)) {
+            if (CommonUtil.isValidURL(iconURL)) {
+                return iconURL;
+            }
+            return getIconURLByName(iconURL);
+        }
+        return iconURL;
+    }
+
+    public String getImageUrlWithUrlCheck(String imageURL) {
+        if (!StringUtil.isNullEmpty(imageURL)) {
+            if (CommonUtil.isValidURL(imageURL)) {
+                return imageURL;
+            }
+            return getImageURLByName(imageURL);
+        }
+        return imageURL;
+    }
+
     public String saveImage(byte[] imageByte, String imageName) throws IOException {
         try {
             String path = applicationProperties.getAsset().getImageDirPath();
@@ -115,7 +136,8 @@ public class FileSystemService {
                 Files.createDirectories(newFile.getParent());
 
                 Files.write(newFile, iconMultipartFile.getBytes());
-
+                log.debug("File Path :: " + newFile.getParent());
+                log.debug("File Path :: " + newFile.toAbsolutePath());
                 return icon;
             }
             return null;
@@ -133,6 +155,8 @@ public class FileSystemService {
             Files.createDirectories(newFile.getParent());
 
             Files.write(newFile, iconByte);
+            log.debug("File Path :: " + newFile.getParent());
+            log.debug("File Path :: " + newFile.toAbsolutePath());
 
             return icon;
         } catch (Exception e) {
@@ -144,8 +168,10 @@ public class FileSystemService {
     public FileSystemResource getImageByName(String name) {
         try {
             String path = applicationProperties.getAsset().getImageDirPath();
+            log.debug("File Path :: " + path);
             return new FileSystemResource(Paths.get(path + name));
         } catch (Exception e) {
+            log.error("Error :: getImageByName" + e.getMessage(), e);
             throw e;
         }
     }
@@ -153,8 +179,10 @@ public class FileSystemService {
     public FileSystemResource getIconByName(String name) {
         try {
             String path = applicationProperties.getAsset().getIconDirPath();
+            log.debug("File Path :: " + path);
             return new FileSystemResource(Paths.get(path + name));
         } catch (Exception e) {
+            log.error("Error :: getIconByName" + e.getMessage(), e);
             throw e;
         }
     }
@@ -215,7 +243,6 @@ public class FileSystemService {
                 errorDTOList.add(new ErrorDTO(messageSource.getMessage("invalid.image.type", null, Locale.getDefault())));
             }
         }
-
         return errorDTOList;
     }
 

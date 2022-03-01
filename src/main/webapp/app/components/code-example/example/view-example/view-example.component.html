@@ -1,0 +1,191 @@
+<!-- <ngx-codemirror
+  [(ngModel)]="content"
+  [options]="options"
+></ngx-codemirror> -->
+
+<!-- <div style="height: 500px">
+    <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="codeMst!.programText" (onInit)="onEditorInit($event)"></ngx-monaco-editor>
+</div> -->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">View Example</h5>
+        </div>
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Code Id</label>
+                <input type="text" class="form-control" disabled="" placeholder="id" value="{{ codeMst!.programId }}" />
+              </div>
+            </div>
+
+            <div class="col-md-5 pr-1">
+              <div class="form-group">
+                <label>Application Name</label>
+                <input type="text" class="form-control" disabled="" value="{{ appMst!.appName }}" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5 pr-1">
+              <div class="form-group">
+                <label>Title</label>
+                <p style="white-space: pre-wrap" class="form-control" disabled>{{ codeMst!.title }}</p>
+              </div>
+            </div>
+
+            <div class="col-md-3 pr-1">
+              <div class="form-group">
+                <label>Language</label>
+                <div>
+                  <button class="btn btn-success btn-sm">{{ appMst!.programmingLangDTO!.langName }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 pr-1">
+              <div>
+                <label>Code</label>
+                <div style="height: 350px; min-height: 300px">
+                  <ngx-monaco-editor
+                    style="height: 100%"
+                    [options]="editorOptions"
+                    [(ngModel)]="codeMst!.programText"
+                    (onInit)="onEditorInit($event)"
+                  ></ngx-monaco-editor>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Output</label>
+
+                <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="output" (onInit)="onEditorInit($event)"></ngx-monaco-editor>
+              </div>
+            </div>
+
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Input</label>
+                <ngx-monaco-editor
+                  [options]="editorOptions"
+                  [(ngModel)]="codeMst!.programInput"
+                  (onInit)="onEditorInit($event)"
+                ></ngx-monaco-editor>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 pr-1">
+              <div class="form-group">
+                <label>Explain</label>
+                <div style="height: 200px">
+                  <textarea
+                    class="form-control textarea"
+                    disabled=""
+                    style="height: 100%; max-height: fit-content"
+                    placeholder="description"
+                    value="{{ codeMst!.explainText }}"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label class="form-control-label">Program By</label>
+                <input type="text" class="form-control" disabled="" value="{{ codeMst!.programBy }}" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Program URL</label>
+                <textarea class="form-control textarea" disabled="" value="{{ codeMst!.programURL }}"></textarea>
+              </div>
+            </div>
+
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label></label>
+                <br />
+                <button type="button" class="btn btn-link btn-success" (click)="openURL()">
+                  <fa-icon icon="external-link-alt"></fa-icon>&nbsp;<span> Open</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Crated By</label>
+                <input type="text" class="form-control" disabled="" placeholder="Data not found" value="{{ codeMst!.createdBy }}" />
+              </div>
+            </div>
+
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Crated date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  disabled=""
+                  placeholder="Crated date"
+                  value="{{ codeMst!.createdDate | date: 'dd/MM/yy HH:mm' }}"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Updated By</label>
+                <input type="text" class="form-control" disabled="" placeholder="NA" value="{{ codeMst!.updatedBy }}" />
+              </div>
+            </div>
+
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Updated date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  disabled=""
+                  placeholder="NA"
+                  value="{{ codeMst!.updatedDate | date: 'dd/MM/yy HH:mm' }}"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="button" class="btn btn-secondary" (click)="previousState()">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span> Back</span>
+              </button>
+              <button type="button" class="btn btn-primary" (click)="run()"><fa-icon icon="code"></fa-icon>&nbsp;<span>Run</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

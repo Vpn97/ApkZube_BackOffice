@@ -1,3 +1,5 @@
+import { ProgrammingLangDTO } from './programming-lang-dto.model';
+
 export interface IAppMst {
   appId?: number;
   appName?: string;
@@ -10,6 +12,7 @@ export interface IAppMst {
   developerName?: null;
   privacyPolicyUrl?: string;
   created_date?: Date;
+  programmingLangDTO?: ProgrammingLangDTO;
 }
 
 export class AppMst implements IAppMst {
@@ -24,6 +27,7 @@ export class AppMst implements IAppMst {
     public iconUrl?: string,
     public developerName?: null,
     public privacyPolicyUrl?: string,
-    public created_date?: Date
+    public created_date?: Date,
+    public programmingLangDTO?: ProgrammingLangDTO
   ) {}
 }

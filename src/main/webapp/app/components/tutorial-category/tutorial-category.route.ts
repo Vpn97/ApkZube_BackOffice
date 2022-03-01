@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { Authority } from 'app/config/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
@@ -9,6 +10,9 @@ export const tutorialCatState: Routes = [
   {
     path: 'tut-cat',
     canActivate: [UserRouteAccessService],
+    data: {
+      authorities: [Authority.ADMIN],
+    },
     children: [
       {
         path: 'view-category-list/:appId',

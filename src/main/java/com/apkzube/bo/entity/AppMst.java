@@ -12,6 +12,9 @@ public class AppMst {
     @Column(name = "app_id", nullable = false)
     private Long appId;
 
+    @Column(name = "langId", nullable = false)
+    private Long langId;
+
     @Column(name = "app_name")
     private String appName;
 
@@ -39,8 +42,27 @@ public class AppMst {
     @Column(name = "privacy_policy_url")
     private String privacyPolicyUrl;
 
+    @Column(name = "blog_base_url")
+    private String blogBaseUrl;
+
     @Column(name = "created_date")
-    private Date created_date;
+    private Date createdDate;
+
+    public Long getLangId() {
+        return langId;
+    }
+
+    public void setLangId(Long langId) {
+        this.langId = langId;
+    }
+
+    public String getBlogBaseUrl() {
+        return blogBaseUrl;
+    }
+
+    public void setBlogBaseUrl(String blogBaseUrl) {
+        this.blogBaseUrl = blogBaseUrl;
+    }
 
     public Long getAppId() {
         return appId;
@@ -122,11 +144,11 @@ public class AppMst {
         this.privacyPolicyUrl = privacyPolicyUrl;
     }
 
-    public Date getCreated_date() {
-        return created_date;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreated_date(Date created_date) {
-        this.created_date = created_date;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 }

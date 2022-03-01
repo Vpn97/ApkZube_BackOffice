@@ -335,6 +335,7 @@ public class UserService {
 
     /**
      * Gets a list of all the authorities.
+     *
      * @return a list of all the authorities.
      */
     @Transactional(readOnly = true)
@@ -364,5 +365,17 @@ public class UserService {
             return user.get().getId();
         }
         return 0L;
+    }
+
+    public String getUserNameById(Long id) {
+        try {
+            if (id != null) {
+                return userRepository.getNameById(id);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

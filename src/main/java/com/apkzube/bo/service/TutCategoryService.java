@@ -1,13 +1,12 @@
 package com.apkzube.bo.service;
 
-import com.apkzube.bo.entity.AppMst;
 import com.apkzube.bo.entity.TutorialCategoryMst;
 import com.apkzube.bo.repository.*;
+import com.apkzube.bo.service.dto.ErrorDTO;
+import com.apkzube.bo.service.dto.TutCategoryDTO;
+import com.apkzube.bo.service.dto.TutorialCategoryFormDTO;
+import com.apkzube.bo.service.mapper.MapperService;
 import com.apkzube.bo.util.StringUtil;
-import com.apkzube.bo.web.rest.response.ErrorDTO;
-import com.apkzube.bo.web.rest.response.TutCategoryMstDTO;
-import com.apkzube.bo.web.rest.vm.TutorialCategoryFormVM;
-import com.netflix.discovery.converters.Auto;
 import java.io.IOException;
 import java.util.*;
 import org.slf4j.Logger;
@@ -62,6 +61,9 @@ public class TutCategoryService {
     @Autowired
     private AppMaterialMstRepository appMaterialMstRepository;
 
+    @Autowired
+    private MapperService mapperService;
+
     public List<TutorialCategoryMst> getAllTutCategoryByAppId(long appId) throws Exception {
         try {
             return tutorialCategoryMstRepository.findAllByAppId(appId);
@@ -70,66 +72,26 @@ public class TutCategoryService {
         }
     }
 
-    public TutCategoryMstDTO getTutCategoryById(long catId) {
-        TutCategoryMstDTO tutCategoryMstDTO = null;
+    public TutCategoryDTO getTutCategoryById(long catId) {
+        TutCategoryDTO tutCategoryDTO = null;
 
         if (catId != 0L) {
             TutorialCategoryMst mst = tutorialCategoryMstRepository.findOneByTutCatMstId(catId);
             if (mst != null) {
-                Optional<AppMst> appMst = appMstRepository.findById(mst.getAppId());
-                tutCategoryMstDTO = new TutCategoryMstDTO(mst, appMst.get());
-                tutCategoryMstDTO.setImgURL(fileSystemService.getImageURLByName(tutCategoryMstDTO.getImgURL()));
-                tutCategoryMstDTO.setIconURL(fileSystemService.getIconURLByName(tutCategoryMstDTO.getIconURL()));
-
-                if (mst.getCreatedBy() != null) {
-                    String name = userRepository.getNameById(mst.getCreatedBy());
-                    tutCategoryMstDTO.setCreatedUserName(name);
-                }
-
-                if (mst.getUpdatedBy() != null) {
-                    String updatedUserName = userRepository.getNameById(mst.getUpdatedBy());
-                    tutCategoryMstDTO.setUpdatedUserName(updatedUserName);
-                }
+                tutCategoryDTO = mapperService.tutCategoryMstToDTO(mst);
             }
         }
 
-        return tutCategoryMstDTO;
+        return tutCategoryDTO;
     }
 
-    public HashMap<String, String> updateTutorialCategoryMst(TutorialCategoryMst tutorialCategoryMst) {
-        try {
-            List<ErrorDTO> errorDTOList = new ArrayList<>();
-            TutorialCategoryMst mst = tutorialCategoryMstRepository.findOneByTutCatMstId(tutorialCategoryMst.getTutCatMstId());
-            if (mst != null) {
-                if (tutorialCategoryMst.getCategoryName() != null && !tutorialCategoryMst.getCategoryName().isEmpty()) {
-                    mst.setCategoryName(tutorialCategoryMst.getCategoryName());
-                } else {
-                    errorDTOList.add(new ErrorDTO("CATEGORY", "Category name can't be empty"));
-                }
-
-                if (tutorialCategoryMst.getCategoryDesc() != null && !tutorialCategoryMst.getCategoryDesc().isEmpty()) {
-                    mst.setCategoryName(tutorialCategoryMst.getCategoryName());
-                } else {
-                    errorDTOList.add(new ErrorDTO("CATEGORY", "Category description can't be empty"));
-                }
-
-                mst.setActive(true);
-                //mst.setIconURL();
-
-            }
-        } catch (Exception e) {
-            log.error("Error :: updateTutorialCategoryMst ::" + e.getMessage(), e);
-        }
-        return null;
-    }
-
-    public List<ErrorDTO> createTutorialCategory(TutorialCategoryFormVM formVM) throws IOException {
+    public List<ErrorDTO> createTutorialCategory(TutorialCategoryFormDTO formVM) throws IOException {
         List<ErrorDTO> errorDTOList = validateTutCategoryForm(formVM);
 
         if (errorDTOList.isEmpty()) {
             TutorialCategoryMst mst = new TutorialCategoryMst();
-            mst.setCategoryName(formVM.getCategoryName());
-            mst.setCategoryDesc(formVM.getCategoryDesc());
+            mst.setCategoryName(formVM.getCategoryName().trim());
+            mst.setCategoryDesc(formVM.getCategoryDesc().trim());
             mst.setCatType(formVM.getCatType());
             mst.setActive(formVM.isActive());
             mst.setAppId(formVM.getAppId());
@@ -165,7 +127,7 @@ public class TutCategoryService {
         return errorDTOList;
     }
 
-    public List<ErrorDTO> validateTutCategoryForm(TutorialCategoryFormVM formVM) {
+    public List<ErrorDTO> validateTutCategoryForm(TutorialCategoryFormDTO formVM) {
         List<ErrorDTO> errorDTOList = new ArrayList<>();
         ErrorDTO errorDTO = null;
         try {
@@ -175,7 +137,10 @@ public class TutCategoryService {
                         errorDTO = new ErrorDTO("Category name is required");
                         errorDTOList.add(errorDTO);
                     } else {
-                        int count = tutorialCategoryMstRepository.countByCategoryNameAndAppId(formVM.getCategoryName(), formVM.getAppId());
+                        int count = tutorialCategoryMstRepository.countByCategoryNameAndAppId(
+                            formVM.getCategoryName().trim(),
+                            formVM.getAppId()
+                        );
                         if (count != 0) {
                             errorDTO = new ErrorDTO("Category name already exist");
                             errorDTOList.add(errorDTO);
@@ -218,13 +183,13 @@ public class TutCategoryService {
         return errorDTOList;
     }
 
-    public List<ErrorDTO> updateTutorialCategory(TutorialCategoryFormVM formVM) throws IOException {
+    public List<ErrorDTO> updateTutorialCategory(TutorialCategoryFormDTO formVM) throws IOException {
         List<ErrorDTO> errorDTOList = validateTutCategoryFormForUpdate(formVM);
 
         if (errorDTOList.isEmpty()) {
             TutorialCategoryMst mst = tutorialCategoryMstRepository.findOneByTutCatMstId(formVM.getTutCatMstId());
-            mst.setCategoryName(formVM.getCategoryName());
-            mst.setCategoryDesc(formVM.getCategoryDesc());
+            mst.setCategoryName(formVM.getCategoryName().trim());
+            mst.setCategoryDesc(formVM.getCategoryDesc().trim());
             mst.setCatType(formVM.getCatType());
             mst.setActive(formVM.isActive());
             mst.setUpdatedBy(userService.getCurrentUserId());
@@ -263,7 +228,7 @@ public class TutCategoryService {
         return errorDTOList;
     }
 
-    public List<ErrorDTO> validateTutCategoryFormForUpdate(TutorialCategoryFormVM formVM) {
+    public List<ErrorDTO> validateTutCategoryFormForUpdate(TutorialCategoryFormDTO formVM) {
         List<ErrorDTO> errorDTOList = new ArrayList<>();
         ErrorDTO errorDTO = null;
         try {

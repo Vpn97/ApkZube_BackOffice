@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">View Tutorial</h5>
+        </div>
+
+        <div class="card-body">
+          <button class="btn btn-danger btn-sm" *ngIf="!tutMst!.active">Deactivated</button>
+          <button class="btn btn-success btn-sm" *ngIf="tutMst!.active">Active</button>
+          <br />
+          <button class="btn btn-info btn-sm">{{ catMst!.categoryName }}</button>
+          <form>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Icon</label>
+                  <img class="form-control" disabled="" style="width: 200px; height: inherit" src="{{ tutMst!.imgURL }}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Tutorial Id</label>
+                  <input type="text" class="form-control" disabled="" placeholder="id" value="{{ tutMst!.tutMstId }}" />
+                </div>
+              </div>
+
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Application Name</label>
+                  <input type="text" class="form-control" disabled="" value="{{ appMst!.appName }}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Title</label>
+                  <input type="text" class="form-control" disabled="" value="{{ tutMst!.title }}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Description</label>
+                  <!-- <textarea
+                    class="form-control textarea"
+                    disabled=""
+                    placeholder="description"
+                    value="{{ tutMst!.description }}"
+                  ></textarea> -->
+                  <ngx-editor [editor]="editor" [ngModel]="tutMst!.description" [ngModelOptions]="{ standalone: true }" disabled="">
+                  </ngx-editor>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Crated By</label>
+                  <input type="text" class="form-control" disabled="" placeholder="Data not found" value="{{ tutMst!.createdBy }}" />
+                </div>
+              </div>
+
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Crated date</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    disabled=""
+                    placeholder="Crated date"
+                    value="{{ tutMst!.createdDate | date: 'dd/MM/yy HH:mm' }}"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Updated By</label>
+                  <input type="text" class="form-control" disabled="" placeholder="NA" value="{{ tutMst!.updatedBy }}" />
+                </div>
+              </div>
+
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Updated date</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    disabled=""
+                    placeholder="NA"
+                    value="{{ tutMst!.updatedDate | date: 'dd/MM/yy HH:mm' }}"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="button" class="btn btn-secondary" (click)="previousState()">
+                  <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span> Back</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

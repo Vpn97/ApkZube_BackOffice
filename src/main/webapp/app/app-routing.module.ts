@@ -64,6 +64,23 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           loadChildren: () => import('./components/app-material/app-material.module').then(m => m.AppMaterialModule),
         },
 
+        {
+          path: 'code-examples',
+          data: {
+            authorities: [Authority.ADMIN],
+          },
+          canActivate: [UserRouteAccessService],
+          loadChildren: () => import('./components/code-example/code-examples.module').then(m => m.CodeExamplesModule),
+        },
+        {
+          path: 'tutorial',
+          data: {
+            authorities: [Authority.ADMIN],
+          },
+          canActivate: [UserRouteAccessService],
+          loadChildren: () => import('./components/maintain-tutorial/tutorial.module').then(m => m.TutorialModule),
+        },
+
         ...LAYOUT_ROUTES,
       ],
       { enableTracing: DEBUG_INFO_ENABLED }

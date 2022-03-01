@@ -88,12 +88,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/authenticate").permitAll()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
-            .antMatchers(Constants.ASSET_IMG_URL).permitAll()
-            .antMatchers(Constants.ASSET_ICON_URL).permitAll()
             .antMatchers("/api/account/reset-password/init").permitAll()
             .antMatchers("/api/account/reset-password/finish").permitAll()
-            .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
+
+            .antMatchers(Constants.ASSET_IMG_URL).permitAll()
+            .antMatchers(Constants.ASSET_ICON_URL).permitAll()
+
             .antMatchers("/api/**").authenticated()
+
+            .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/api/common/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/api/material/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/api/appmst/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/api/category/**").hasAuthority(AuthoritiesConstants.ADMIN)
+
+
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/health/**").permitAll()
             .antMatchers("/management/info").permitAll()

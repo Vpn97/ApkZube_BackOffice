@@ -1,1 +1,138 @@
-<p>view-material works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">View Material</h5>
+        </div>
+
+        <div class="card-body">
+          <button class="btn btn-danger btn-sm" *ngIf="!matDTO!.active">Deactivated</button>
+          <button class="btn btn-success btn-sm" *ngIf="matDTO!.active">Active</button>
+          <form>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Icon</label>
+                  <img class="form-control" disabled="" style="width: 200px; height: inherit" src="{{ matDTO!.iconURL }}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Material Id</label>
+                  <input type="text" class="form-control" disabled="" placeholder="id" value="{{ matDTO!.materialId }}" />
+                </div>
+              </div>
+
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Application Name</label>
+                  <input type="text" class="form-control" disabled="" value="{{ appMst!.appName }}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Title</label>
+                  <input type="text" class="form-control" disabled="" value="{{ matDTO!.title }}" />
+                </div>
+              </div>
+
+              <div class="col-md-3 pr-1">
+                <div class="form-group">
+                  <label>Type</label>
+                  <input type="text" class="form-control" disabled="" value="{{ matDTO!.typeCode }}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Material URL</label>
+                  <input type="text" class="form-control" disabled="" value="{{ matDTO!.materialURL }}" />
+                </div>
+              </div>
+
+              <div class="col-md-3 pr-1">
+                <div class="form-group">
+                  <label>Action</label>
+                  <input type="text" class="form-control" disabled="" value="{{ matDTO!.clickActionCode }}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Details</label>
+                  <textarea class="form-control textarea" disabled="" placeholder="description" value="{{ matDTO!.detail }}"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Crated By</label>
+                  <input type="text" class="form-control" disabled="" placeholder="Data not found" value="{{ matDTO!.createdBy }}" />
+                </div>
+              </div>
+
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Crated date</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    disabled=""
+                    placeholder="Crated date"
+                    value="{{ matDTO!.createdDate | date: 'dd/MM/yy HH:mm' }}"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Updated By</label>
+                  <input type="text" class="form-control" disabled="" placeholder="NA" value="{{ matDTO!.updatedBy }}" />
+                </div>
+              </div>
+
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Updated date</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    disabled=""
+                    placeholder="NA"
+                    value="{{ matDTO!.updatedDate | date: 'dd/MM/yy HH:mm' }}"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="button" class="btn btn-secondary" (click)="previousState()">
+                  <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span> Back</span>
+                </button>
+                <button type="button" class="btn btn-primary" (click)="openMaterial(matDTO!.materialURL)">
+                  <fa-icon icon="external-link-alt"></fa-icon>&nbsp;<span> Open</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

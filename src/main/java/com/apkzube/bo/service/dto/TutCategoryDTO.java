@@ -1,10 +1,10 @@
-package com.apkzube.bo.web.rest.response;
+package com.apkzube.bo.service.dto;
 
 import com.apkzube.bo.entity.AppMst;
 import com.apkzube.bo.entity.TutorialCategoryMst;
 import java.util.Date;
 
-public class TutCategoryMstDTO {
+public class TutCategoryDTO {
 
     private Long tutCatMstId;
 
@@ -35,21 +35,6 @@ public class TutCategoryMstDTO {
     private String updatedUserName;
 
     private AppMst appMst;
-
-    public TutCategoryMstDTO(TutorialCategoryMst categoryMst, AppMst appMst) {
-        this.appMst = appMst;
-        this.tutCatMstId = categoryMst.getTutCatMstId();
-        this.appId = categoryMst.getAppId();
-        this.categoryName = categoryMst.getCategoryName();
-        this.categoryDesc = categoryMst.getCategoryDesc();
-        this.catType = categoryMst.getCatType();
-        this.iconURL = categoryMst.getIconURL();
-        this.imgURL = categoryMst.getImgURL();
-        this.isActive = categoryMst.isActive();
-        this.createdBy = categoryMst.getCreatedBy();
-        this.createdDate = categoryMst.getCreatedDate();
-        this.updatedBy = categoryMst.getUpdatedBy();
-    }
 
     public String getCreatedUserName() {
         return createdUserName;

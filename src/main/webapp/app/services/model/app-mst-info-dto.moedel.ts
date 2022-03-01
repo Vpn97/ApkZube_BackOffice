@@ -1,7 +1,7 @@
 import { AppMst, IAppMst } from './app-mst.model';
 
 export interface IAppMstInfoDTO {
-  appMst?: AppMst;
+  appMstDTO?: AppMst;
   totalCategory?: number;
   totalProgramCategory?: number;
   totalExample?: number;
@@ -13,7 +13,7 @@ export interface IAppMstInfoDTO {
 
 export class AppMstInfoDTO implements IAppMstInfoDTO {
   constructor(
-    public appMst?: AppMst,
+    public appMstDTO?: AppMst,
     public totalCategory?: number,
     public totalProgramCategory?: number,
     public totalExample?: number,

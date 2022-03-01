@@ -14,6 +14,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { FixedPluginModule } from './fixedplugin/fixedplugin.module';
 import { FooterModule } from './footer/footer.module';
 import { NavbarModule } from './navbar/navbar.module';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   imports: [SharedLibsModule],
@@ -27,11 +28,12 @@ import { NavbarModule } from './navbar/navbar.module';
     SortByDirective,
     SortDirective,
     ItemCountComponent,
+    LoadingComponent,
   ],
   exports: [
     SharedLibsModule,
+    LoadingComponent,
     AlertComponent,
-
     SidebarModule,
     FixedPluginModule,
     FooterModule,

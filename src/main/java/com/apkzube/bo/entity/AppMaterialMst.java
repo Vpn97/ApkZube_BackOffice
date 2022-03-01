@@ -2,6 +2,7 @@ package com.apkzube.bo.entity;
 
 import java.util.Date;
 import javax.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @Table(name = "app_material_mst")
 @Entity
@@ -18,6 +19,9 @@ public class AppMaterialMst {
     @Column(name = "material_title")
     private String title;
 
+    @Column(name = "type_code")
+    private String typeCode;
+
     @Column(name = "material_detail")
     private String detail;
 
@@ -33,8 +37,18 @@ public class AppMaterialMst {
     @Column(name = "click_action_code")
     private String clickActionCode;
 
+    @Column(name = "created_by", length = 8)
+    @ColumnDefault("1")
+    private Long createdBy;
+
     @Column(name = "created_date")
     private Date createdDate;
+
+    @Column(name = "updated_by", nullable = true)
+    private Long updatedBy;
+
+    @Column(name = "updated_date", nullable = true)
+    private Date updatedDate;
 
     public Long getMaterialId() {
         return materialId;
@@ -42,6 +56,38 @@ public class AppMaterialMst {
 
     public void setMaterialId(Long materialId) {
         this.materialId = materialId;
+    }
+
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Long getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Long updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public String getTypeCode() {
+        return typeCode;
+    }
+
+    public void setTypeCode(String typeCode) {
+        this.typeCode = typeCode;
     }
 
     public Long getAppId() {

@@ -1,6 +1,7 @@
 package com.apkzube.bo.repository;
 
 import com.apkzube.bo.entity.TutorialCategoryMst;
+import java.util.Collection;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,4 +21,6 @@ public interface TutorialCategoryMstRepository extends JpaRepository<TutorialCat
         countQuery = "SELECT COUNT(*) FROM TutorialCategoryMst tc WHERE tc.isActive=1 AND tc.categoryName=:categoryName  AND tc.appId=:appId "
     )
     int countByCategoryNameAndAppId(@Param("categoryName") String categoryName, @Param("appId") Long appId);
+
+    List<TutorialCategoryMst> findAllByAppIdAndCatType(long appId, String tutorial);
 }

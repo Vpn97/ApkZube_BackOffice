@@ -1,0 +1,126 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Add New Example Category</h5>
+        </div>
+
+        <div class="card-body">
+          <form name="catForm" role="form" (ngSubmit)="save()" [formGroup]="catForm">
+            <input type="hidden" class="form-control" formControlName="appId" value="{{ appId }}" />
+
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Application Name</label>
+                  <input type="text" class="form-control" disabled value="{{ appMst!.appName }}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label class="form-control-label">Category Name</label>
+                  <input type="text" class="form-control" name="title" formControlName="title" />
+                  <div *ngIf="catForm.get('title')!.invalid && (catForm.get('title')!.dirty || catForm.get('title')!.touched)">
+                    <small class="form-text text-danger" *ngIf="catForm.get('title')?.errors?.required">title is required. </small>
+                  </div>
+                  <div *ngIf="catForm.get('title')!.invalid && (catForm.get('title')!.dirty || catForm.get('title')!.touched)">
+                    <small class="form-text text-danger" *ngIf="catForm.get('title')?.errors?.minLength">min 6 char</small>
+                  </div>
+                  <div *ngIf="catForm.get('title')!.invalid && (catForm.get('title')!.dirty || catForm.get('title')!.touched)">
+                    <small class="form-text text-danger" *ngIf="catForm.get('title')?.errors?.maxLength">max 50</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea class="form-control textarea" name="detail" formControlName="detail"></textarea>
+                  <div *ngIf="catForm.get('detail')!.invalid && (catForm.get('detail')!.dirty || catForm.get('detail')!.touched)">
+                    <small class="form-text text-danger" *ngIf="catForm.get('detail')?.errors?.required">
+                      Category description is required.
+                    </small>
+
+                    <small class="form-text text-danger" *ngIf="catForm.get('detail')?.errors?.maxlength">
+                      cannot be longer than 200 characters.
+                    </small>
+
+                    <small class="form-text text-danger" *ngIf="catForm.get('detail')?.errors?.minlength">
+                      cannot be shorter than 8 characters.
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Icon</label>
+                  <div class="custom-file">
+                    <label class="custom-file-label" for="iconURL">{{ iconFileName }}</label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      class="custom-file-input form-control"
+                      id="iconURL"
+                      formControlName="iconURL"
+                      (change)="onIconFileChange($event)"
+                    />
+                    <div *ngIf="catForm.get('iconURL')!.invalid && (catForm.get('iconURL')!.dirty || catForm.get('iconURL')!.touched)">
+                      <small class="form-text text-danger" *ngIf="catForm.get('iconURL')?.errors?.required">Icon is required. </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 pr-1" *ngIf="iconFileSrc">
+                <div class="form-group">
+                  <label>Icon preview</label>
+
+                  <img class="form-control" disabled="" style="width: 100px; height: inherit" src="{{ iconFileSrc }}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>State</label>
+
+                  <select class="form-control" id="active" name="active" formControlName="active">
+                    <option value="{{ true }}">Active</option>
+                    <option value="{{ false }}">Inactive</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="button" class="btn btn-secondary" (click)="previousState()">
+                  <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span> Back</span>
+                </button>
+                <button type="button" class="btn btn-warning" (click)="clearForm()">
+                  <fa-icon icon="trash"></fa-icon>&nbsp;<span> Clear</span>
+                </button>
+
+                <button type="submit" [disabled]="catForm.invalid || isSaving" class="btn btn-primary">
+                  <fa-icon icon="save"></fa-icon>&nbsp;<span> Save</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

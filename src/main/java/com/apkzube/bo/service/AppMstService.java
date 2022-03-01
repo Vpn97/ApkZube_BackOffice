@@ -1,15 +1,12 @@
 package com.apkzube.bo.service;
 
-import com.apkzube.bo.domain.User;
+import static com.apkzube.bo.service.constant.TutorialConstant.CAT_TYPE_TUTORIAL;
+
 import com.apkzube.bo.entity.AppMst;
-import com.apkzube.bo.entity.TutorialCategoryMst;
 import com.apkzube.bo.repository.*;
-import com.apkzube.bo.security.SecurityUtils;
-import com.apkzube.bo.util.StringUtil;
-import com.apkzube.bo.web.rest.response.AppMstInfoDTO;
-import com.apkzube.bo.web.rest.response.ErrorDTO;
-import com.apkzube.bo.web.rest.response.TutCategoryMstDTO;
-import com.apkzube.bo.web.rest.vm.TutorialCategoryFormVM;
+import com.apkzube.bo.service.constant.TutorialConstant;
+import com.apkzube.bo.service.dto.AppMstInfoDTO;
+import com.apkzube.bo.service.mapper.MapperService;
 import java.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,18 +53,21 @@ public class AppMstService {
     @Autowired
     private AppMaterialMstRepository appMaterialMstRepository;
 
+    @Autowired
+    private MapperService mapperService;
+
     public AppMstInfoDTO getAppMstInfo(long appId) {
         AppMstInfoDTO appMstInfoDTO = new AppMstInfoDTO();
         Optional<AppMst> appMstOptional = appMstRepository.findById(appId);
         if (appMstOptional.isPresent()) {
             AppMst appMst = appMstOptional.get();
 
-            appMstInfoDTO.setAppMst(appMst);
+            appMstInfoDTO.setAppMstDTO(mapperService.appMstToDTO(appMst));
 
             int totalCategory = tutorialCategoryMstRepository.countByAppId(appId);
             appMstInfoDTO.setTotalCategory(totalCategory);
 
-            int totalTutorial = tutorialMstRepository.totalTutorial(appId);
+            int totalTutorial = tutorialMstRepository.totalTutorial(appId, CAT_TYPE_TUTORIAL);
             appMstInfoDTO.setTotalTutorial(totalTutorial);
 
             int totalProgramCat = programCategoryMstRepository.countByAppId(appId);

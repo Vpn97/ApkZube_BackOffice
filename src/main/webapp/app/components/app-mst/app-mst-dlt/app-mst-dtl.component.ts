@@ -22,7 +22,7 @@ export class AppMstDtlComponent implements OnInit {
 
     this.appMstService.getAppMstInfo(appId).subscribe(data => {
       this.appMstInfoDTO = data as AppMstInfoDTO;
-      this.appMst = this.appMstInfoDTO.appMst;
+      this.appMst = this.appMstInfoDTO.appMstDTO;
     });
   }
 
@@ -38,6 +38,28 @@ export class AppMstDtlComponent implements OnInit {
     if (!this.router.getCurrentNavigation()) {
       // There were no routing during login (eg from navigationToStoredUrl)
       this.router.navigate(['tut-cat', 'view-category-list', this.appMst?.appId]);
+      // this.router.navigate(['/app-mst/view-category-list',this.appMst?.appId]);
+    }
+  }
+
+  openMaterial(): void {
+    if (!this.router.getCurrentNavigation()) {
+      // There were no routing during login (eg from navigationToStoredUrl)
+      this.router.navigate(['material', 'list', this.appMst?.appId]);
+      // this.router.navigate(['/app-mst/view-category-list',this.appMst?.appId]);
+    }
+  }
+
+  openTutorial(): void {
+    if (!this.router.getCurrentNavigation()) {
+      this.router.navigate(['tutorial', 'list', this.appMst?.appId]);
+    }
+  }
+
+  openExampleCategory(): void {
+    if (!this.router.getCurrentNavigation()) {
+      // There were no routing during login (eg from navigationToStoredUrl)
+      this.router.navigate(['code-examples', 'cat', this.appMst?.appId]);
       // this.router.navigate(['/app-mst/view-category-list',this.appMst?.appId]);
     }
   }

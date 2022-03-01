@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">View Category</h5>
+        </div>
+
+        <div class="card-body">
+          <button class="btn btn-danger btn-sm" *ngIf="!catDTO!.active">Deactivated</button>
+          <button class="btn btn-success btn-sm" *ngIf="catDTO!.active">Active</button>
+          <form>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Icon</label>
+                  <img class="form-control" disabled="" style="width: 100px; height: inherit" src="{{ catDTO!.catIconURL }}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Category Id</label>
+                  <input type="text" class="form-control" disabled="" placeholder="id" value="{{ catDTO!.programCatId }}" />
+                </div>
+              </div>
+
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Application Name</label>
+                  <input type="text" class="form-control" disabled="" value="{{ appMst!.appName }}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>Category name</label>
+                  <input type="text" class="form-control" disabled="" value="{{ catDTO!.catName }}" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Category description</label>
+                  <textarea
+                    class="form-control textarea"
+                    disabled=""
+                    placeholder="description"
+                    value="{{ catDTO!.catDescription }}"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Crated By</label>
+                  <input type="text" class="form-control" disabled="" placeholder="Data not found" value="{{ catDTO!.createdBy }}" />
+                </div>
+              </div>
+
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Crated date</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    disabled=""
+                    placeholder="Crated date"
+                    value="{{ catDTO!.createdDate | date: 'dd/MM/yy HH:mm' }}"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Updated By</label>
+                  <input type="text" class="form-control" disabled="" placeholder="NA" value="{{ catDTO!.updatedBy }}" />
+                </div>
+              </div>
+
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Updated date</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    disabled=""
+                    placeholder="NA"
+                    value="{{ catDTO!.updatedDate | date: 'dd/MM/yy HH:mm' }}"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="button" class="btn btn-secondary" (click)="previousState()">
+                  <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span> Back</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

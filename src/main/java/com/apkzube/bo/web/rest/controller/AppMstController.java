@@ -1,23 +1,17 @@
 package com.apkzube.bo.web.rest.controller;
 
 import com.apkzube.bo.entity.AppMst;
-import com.apkzube.bo.entity.TutorialCategoryMst;
-import com.apkzube.bo.entity.TutorialCategoryType;
 import com.apkzube.bo.repository.AppMstRepository;
 import com.apkzube.bo.repository.TutorialCategoryTypeRepository;
 import com.apkzube.bo.service.AppMstService;
 import com.apkzube.bo.service.TutCategoryService;
 import com.apkzube.bo.service.UserService;
-import com.apkzube.bo.web.rest.response.AppMstInfoDTO;
-import com.apkzube.bo.web.rest.response.ErrorDTO;
-import com.apkzube.bo.web.rest.response.TutCategoryMstDTO;
-import com.apkzube.bo.web.rest.vm.TutorialCategoryFormVM;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.apkzube.bo.service.dto.AppMstDTO;
+import com.apkzube.bo.service.dto.AppMstInfoDTO;
+import com.apkzube.bo.service.mapper.MapperService;
 import java.util.List;
 import java.util.Optional;
-import javax.validation.Valid;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,18 +40,20 @@ public class AppMstController {
     @Autowired
     private TutCategoryService tutCategoryService;
 
+    @Autowired
+    private MapperService mapperService;
+
     @GetMapping("/getallappinfo")
-    public ResponseEntity<List<AppMst>> getAllAppsInfo() {
-        List<AppMst> appMsts = appMstRepository.findAll();
-        return ResponseEntity.ok(appMsts);
+    public ResponseEntity<List<AppMstDTO>> getAllAppsInfo() {
+        return ResponseEntity.ok(appMstRepository.findAll().stream().map(mapperService::appMstToDTO).collect(Collectors.toList()));
     }
 
     @GetMapping("/findAppMstById")
-    public ResponseEntity<AppMst> findAppMstById(@RequestParam(value = "appId") String appId) {
+    public ResponseEntity<AppMstDTO> findAppMstById(@RequestParam(value = "appId") String appId) {
         try {
             Optional<AppMst> appMsts = appMstRepository.findById(Long.parseLong(appId));
             if (appMsts.isPresent()) {
-                return ResponseEntity.ok(appMsts.get());
+                return ResponseEntity.ok(mapperService.appMstToDTO(appMsts.get()));
             }
         } catch (Exception e) {
             log.error("AppMstController : findAppMstById : " + e.getMessage(), e);
