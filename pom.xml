@@ -19,6 +19,16 @@
         <!-- jhipster-needle-maven-plugin-repository -->
     </pluginRepositories>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>apkzube</id>
+            <url>apkzube</url>
+        </snapshotRepository>
+        <repository>
+            <id>apkzube</id>
+            <url>apkzube</url>
+        </repository>
+    </distributionManagement>
     <!-- jhipster-needle-distribution-management -->
 
     <properties>
