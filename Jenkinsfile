@@ -50,7 +50,7 @@ node {
     }
 
      stage('packaging') {
-            sh "mvn -Pdev -DskipTests"
+            sh "mvn clean install -Pdev -DskipTests"
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
      }
 
