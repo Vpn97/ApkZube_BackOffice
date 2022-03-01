@@ -49,15 +49,13 @@ node {
         }
     }
 
-   /*  stage('packaging') {
+    stage('packaging') {
         sh "./mvnw clean install -Pdev -DskipTests"
-        archiveArtifacts artifacts: '**//* target *//*.jar', fingerprint: true
-    } */
-
-    stage('deploy') {
-        sh "./mvnw -Pdev -DskipTests"
+        archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
     }
 
-
+    stage('deploy') {
+        sh "java -jar target/apk-zube-back-office-0.0.1-SNAPSHOT.jar"
+    }
 
 }
