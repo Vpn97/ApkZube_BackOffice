@@ -39,7 +39,7 @@ node {
 
     stage('frontend tests') {
         try {
-            sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm -DskipTests "
+            sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm -DskipTests"
         } catch(err) {
             throw err
         } finally {
