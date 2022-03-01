@@ -6,6 +6,10 @@ node {
     env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
 
 
+    env.M2_HOME="${tool 'apache-maven-3.8.1'}"
+    env.PATH="${env.M2_HOME}/bin:${env.PATH}"
+
+
     stage('checkout') {
         checkout scm
     }
