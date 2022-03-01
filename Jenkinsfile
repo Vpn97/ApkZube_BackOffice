@@ -50,6 +50,7 @@ node {
     stage('packaging') {
         sh "./mvnw -ntp verify -P-webapp deploy -Pdev -DskipTests"
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+        junit allowEmptyResults: true, testResults: '**/test-results/*.xml'
     }
 
     stage('deploy') {
