@@ -54,7 +54,7 @@ node {
     }
 
      stage('packaging') {
-            sh "./mvnw clean install -Prod -DskipTests"
+            sh "./mvnw clean install -Pprod -DskipTests"
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
      }
 
@@ -63,7 +63,8 @@ node {
     } */
 
      stage("Staging") {
-        sh "pid=\$(lsof -i:8080 -t); kill -TERM \$pid || kill -KILL \$pid"
+        //sh "pid=$(lsof -i:8080 -t); kill -TERM $pid || kill -KILL \$pid"
+        sh "npx kill -port 8080"
         withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
             sh 'nohup java -Dserver.port=8080 -jar ./target/apk-zube-back-office-0.0.1-SNAPSHOT.jar &'
         }
