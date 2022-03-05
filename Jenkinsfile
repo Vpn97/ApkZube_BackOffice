@@ -59,7 +59,7 @@ node {
      }
 
     stage('deploy') {
-        sh "java -jar .\target\apk-zube-back-office-0.0.1-SNAPSHOT.jar"
+        sh "java -jar ./target/apk-zube-back-office-0.0.1-SNAPSHOT.jar"
     }
 
 }
