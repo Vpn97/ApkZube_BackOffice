@@ -54,12 +54,12 @@ node {
     }
 
      stage('packaging') {
-            sh "mvn clean install -Pdev -DskipTests"
+            sh "./mvnw clean install -Prod -DskipTests"
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
      }
 
     stage('deploy') {
-        sh "java -jar target/apk-zube-back-office-0.0.1-SNAPSHOT.jar"
+        sh "java -jar .\target\apk-zube-back-office-0.0.1-SNAPSHOT.jar"
     }
 
 }
