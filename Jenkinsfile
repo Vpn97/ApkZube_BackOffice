@@ -58,8 +58,15 @@ node {
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
      }
 
-    stage('deploy') {
+    /* stage('deploy') {
         sh "java -jar ./target/apk-zube-back-office-0.0.1-SNAPSHOT.jar"
-    }
+    } */
+
+     stage("Staging") {
+        sh "pid=\$(lsof -i:8080 -t); kill -TERM \$pid || kill -KILL \$pid"
+        withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+            sh 'nohup java -Dserver.port=8080 -jar ./target/apk-zube-back-office-0.0.1-SNAPSHOT.jar &'
+        }
+     }
 
 }
